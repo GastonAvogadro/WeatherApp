@@ -2,7 +2,7 @@ let numeroIngresado = '';
 
 function solicitarCiudad() {
     numeroIngresado = prompt(
-        'Ingrese el número de la ciudad para conocer el clima actual:\n1- Buenos Aires\n2- Tierra del Fuego\n3- Santa Cruz\n4- Brasilia\n5- São Paulo\n6- Foz do Iguaçu\n7- (Ciudad más fría)\n8- (Ciudad más cálida)'
+        'IngreseTEST el número de la ciudad para conocer el clima actual:\n1- Buenos Aires\n2- Tierra del Fuego\n3- Santa Cruz\n4- Brasilia\n5- São Paulo\n6- Foz do Iguaçu\n7- (Ciudad más fría)\n8- (Ciudad más cálida)'
     );
 }
 
