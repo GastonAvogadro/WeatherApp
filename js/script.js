@@ -2,7 +2,15 @@ let numeroIngresado = '';
 
 function solicitarCiudad() {
     numeroIngresado = prompt(
-        'IngreseTEST el número de la ciudad para conocer el clima actual:\n1- Buenos Aires\n2- Tierra del Fuego\n3- Santa Cruz\n4- Brasilia\n5- São Paulo\n6- Foz do Iguaçu\n7- (Ciudad más fría)\n8- (Ciudad más cálida)'
+        `Ingrese el número de la ciudad para conocer el clima actual:
+    1- Buenos Aires
+    2- Tierra del Fuego
+    3- Santa Cruz
+    4- Brasilia
+    5- São Paulo
+    6- Foz do Iguaçu
+    7- (Ciudad más fría)
+    8- (Ciudad más cálida)`
     );
 }
 
@@ -20,6 +28,11 @@ class Ciudad {
         this.pais = pais;
         this.temperatura = temperatura;
         this.clima = clima;
+    }
+    mostrar() {
+        alert(`${this.ciudad}:
+temperatura actual ${this.temperatura}°C
+clima ${this.clima}`);
     }
 }
 
@@ -57,78 +70,28 @@ solicitarCiudad();
 while (true) {
     switch (numeroIngresado) {
         case '1':
-            alert(
-                'Buenos Aires:\ntemperatura actual ' +
-                    ciudadesArgentina[0].temperatura +
-                    '°C' +
-                    '\nclima ' +
-                    ciudadesArgentina[0].clima
-            );
+            ciudadesArgentina[0].mostrar();
             break;
         case '2':
-            alert(
-                'Tierra del Fuego:\ntemperatura actual ' +
-                    ciudadesArgentina[1].temperatura +
-                    '°C' +
-                    '\nclima ' +
-                    ciudadesArgentina[1].clima
-            );
+            ciudadesArgentina[1].mostrar();
             break;
         case '3':
-            alert(
-                'Santa Cruz:\ntemperatura actual ' +
-                    ciudadesArgentina[2].temperatura +
-                    '°C' +
-                    '\nclima ' +
-                    ciudadesArgentina[2].clima
-            );
+            ciudadesArgentina[2].mostrar();
             break;
         case '4':
-            alert(
-                'Brasilia:\ntemperatura actual ' +
-                    ciudadesBrasil[0].temperatura +
-                    '°C' +
-                    '\nclima ' +
-                    ciudadesBrasil[0].clima
-            );
+            ciudadesBrasil[0].mostrar();
             break;
         case '5':
-            alert(
-                'São Paulo:\ntemperatura actual ' +
-                    ciudadesBrasil[1].temperatura +
-                    '°C' +
-                    '\nclima ' +
-                    ciudadesBrasil[1].clima
-            );
+            ciudadesBrasil[1].mostrar();
             break;
         case '6':
-            alert(
-                'Foz do Iguaçu:\ntemperatura actual ' +
-                    ciudadesBrasil[2].temperatura +
-                    '°C' +
-                    '\nclima ' +
-                    ciudadesBrasil[2].clima
-            );
+            ciudadesBrasil[2].mostrar();
             break;
         case '7':
-            alert(
-                ciudadesGlobal[0].ciudad +
-                    ':\ntemperatura actual ' +
-                    ciudadesGlobal[0].temperatura +
-                    '°C' +
-                    '\nclima ' +
-                    ciudadesGlobal[0].clima
-            );
+            ciudadesGlobal[0].mostrar();
             break;
         case '8':
-            alert(
-                ciudadesGlobal.at(-1).ciudad +
-                    ':\ntemperatura actual ' +
-                    ciudadesGlobal.at(-1).temperatura +
-                    '°C' +
-                    '\nclima ' +
-                    ciudadesGlobal.at(-1).clima
-            );
+            ciudadesGlobal.at(-1).mostrar();
             break;
         default:
             alert('Ingrese un número correcto por favor');
