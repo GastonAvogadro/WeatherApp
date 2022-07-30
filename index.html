@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Weather App</title>
-    </head>
 
-    <body>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <main class="container">
         <h1>Aplicación del clima</h1>
 
-        <h2>Aquí podrás consultar como está el clima en las siguientes ciudades:</h2>
-
-        <ol>
-            <li>Buenos Aires</li>
-            <li>Tierra del Fuego</li>
-            <li>Santa Cruz</li>
-            <li>Brasilia</li>
-            <li>São Paulo</li>
-            <li>Foz do Iguaçu</li>
-            <li>(Ciudad más fría)</li>
-            <li>(Ciudad más cálida)</li>
+        <ol class="list-group list-group-numbered" id="main__listaCiudades">
+            <li class="list-group-item">Buenos Aires</li>
+            <li class="list-group-item">Tierra del Fuego</li>
+            <li class="list-group-item">Santa Cruz</li>
+            <li class="list-group-item">Brasilia</li>
+            <li class="list-group-item">São Paulo</li>
+            <li class="list-group-item">Foz do Iguaçu</li>
+            <li class="list-group-item">(Ciudad más fría)</li>
+            <li class="list-group-item">(Ciudad más cálida)</li>
         </ol>
 
-        <script src="./js/script.js"></script>
-    </body>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="./js/script.js"></script>
+</body>
+
 </html>

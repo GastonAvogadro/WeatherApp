@@ -1,8 +1,8 @@
 let numeroIngresado = '';
+let listaCiudades = document.getElementById('main__listaCiudades');
 
 function solicitarCiudad() {
-    numeroIngresado = prompt(
-        `Ingrese el número de la ciudad para conocer el clima actual:
+    numeroIngresado = prompt(`Ingrese el número de la ciudad para conocer el clima actual:
     1- Buenos Aires
     2- Tierra del Fuego
     3- Santa Cruz
@@ -10,8 +10,7 @@ function solicitarCiudad() {
     5- São Paulo
     6- Foz do Iguaçu
     7- (Ciudad más fría)
-    8- (Ciudad más cálida)`
-    );
+    8- (Ciudad más cálida)`);
 }
 
 const tempCalor = () => {
@@ -33,6 +32,7 @@ class Ciudad {
         alert(`${this.ciudad}:
 temperatura actual ${this.temperatura}°C
 clima ${this.clima}`);
+        listaCiudades.remove();
     }
 }
 
@@ -67,36 +67,34 @@ ciudadesGlobal.sort((a, b) => {
 
 solicitarCiudad();
 
-while (true) {
-    switch (numeroIngresado) {
-        case '1':
-            ciudadesArgentina[0].mostrar();
-            break;
-        case '2':
-            ciudadesArgentina[1].mostrar();
-            break;
-        case '3':
-            ciudadesArgentina[2].mostrar();
-            break;
-        case '4':
-            ciudadesBrasil[0].mostrar();
-            break;
-        case '5':
-            ciudadesBrasil[1].mostrar();
-            break;
-        case '6':
-            ciudadesBrasil[2].mostrar();
-            break;
-        case '7':
-            ciudadesGlobal[0].mostrar();
-            break;
-        case '8':
-            ciudadesGlobal.at(-1).mostrar();
-            break;
-        default:
-            alert('Ingrese un número correcto por favor');
-            break;
-    }
 
-    solicitarCiudad();
+switch (numeroIngresado) {
+    case '1':
+        ciudadesArgentina[0].mostrar();
+        break;
+    case '2':
+        ciudadesArgentina[1].mostrar();
+        break;
+    case '3':
+        ciudadesArgentina[2].mostrar();
+        break;
+    case '4':
+        ciudadesBrasil[0].mostrar();
+        break;
+    case '5':
+        ciudadesBrasil[1].mostrar();
+        break;
+    case '6':
+        ciudadesBrasil[2].mostrar();
+        break;
+    case '7':
+        ciudadesGlobal[0].mostrar();
+        break;
+    case '8':
+        ciudadesGlobal.at(-1).mostrar();
+        break;
+    default:
+        alert('Ingrese un número correcto por favor');
+        break;
 }
+
