@@ -1,5 +1,6 @@
 let numeroIngresado = '';
 let listaCiudades = document.getElementById('main__listaCiudades');
+let ciudadSeleccionada = document.createElement('div');
 
 function solicitarCiudad() {
     numeroIngresado = prompt(`Ingrese el número de la ciudad para conocer el clima actual:
@@ -29,9 +30,15 @@ class Ciudad {
         this.clima = clima;
     }
     mostrar() {
-        alert(`${this.ciudad}:
-temperatura actual ${this.temperatura}°C
-clima ${this.clima}`);
+        ciudadSeleccionada.innerHTML = `<div class="card" style="width: 25rem">
+        <img src="../img/${this.ciudad}.jpg" class="card-img-top img-fluid">
+        <div class="card-body">
+          <p class="card-text">${this.ciudad}:</p>
+          <p class="card-text">temperatura actual ${this.temperatura}°C</p>
+          <p class="card-text">clima ${this.clima}</p>
+        </div>
+      </div>`;
+        main__container.append(ciudadSeleccionada);
         listaCiudades.remove();
     }
 }
@@ -67,7 +74,6 @@ ciudadesGlobal.sort((a, b) => {
 
 solicitarCiudad();
 
-
 switch (numeroIngresado) {
     case '1':
         ciudadesArgentina[0].mostrar();
@@ -97,4 +103,3 @@ switch (numeroIngresado) {
         alert('Ingrese un número correcto por favor');
         break;
 }
-
