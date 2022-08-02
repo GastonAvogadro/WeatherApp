@@ -1,5 +1,14 @@
-let numeroIngresado = '';
+// VARIABLES
+
 let ciudadSeleccionada = document.createElement('div');
+let btnBuenosAires = document.getElementById('btn__buenosAires');
+let btnTierraDelFuego = document.getElementById('btn__tierraDelFuego');
+let btnSantaCruz = document.getElementById('btn__santaCruz');
+let btnBrasilia = document.getElementById('btn__brasilia');
+let btnSaoPaulo = document.getElementById('btn__saoPaulo');
+let btnFozDoIguacu = document.getElementById('btn__fozDoIguacu');
+let btnCiudadFria = document.getElementById('btn__ciudadFria');
+let btnCiudadCalida = document.getElementById('btn__ciudadCalida');
 
 const tempCalor = () => {
     return Math.round(Math.random() * 20 + 20);
@@ -8,6 +17,8 @@ const tempCalor = () => {
 const tempFrio = () => {
     return Math.round(Math.random() * 20);
 };
+
+// CIUDADES
 
 class Ciudad {
     constructor(ciudad, pais, temperatura, clima) {
@@ -24,13 +35,10 @@ class Ciudad {
           <p class="card-text">temperatura actual ${this.temperatura}°C</p>
           <p class="card-text">clima ${this.clima}</p>
         </div>
-      </div>`;
+        </div>`;
         main__container.append(ciudadSeleccionada);
-        listaCiudades.remove();
     }
 }
-
-// CIUDADES ACTUALES
 
 const ciudadesArgentina = [
     new Ciudad('Buenos Aires', 'Argentina', tempCalor(), 'Soleado'),
@@ -57,33 +65,36 @@ ciudadesGlobal.sort((a, b) => {
     return 0;
 });
 
-// COMIENZO DEL SIMULADOR
+// BOTONES
 
-switch (numeroIngresado) {
-    case '1':
-        ciudadesArgentina[0].mostrar();
-        break;
-    case '2':
-        ciudadesArgentina[1].mostrar();
-        break;
-    case '3':
-        ciudadesArgentina[2].mostrar();
-        break;
-    case '4':
-        ciudadesBrasil[0].mostrar();
-        break;
-    case '5':
-        ciudadesBrasil[1].mostrar();
-        break;
-    case '6':
-        ciudadesBrasil[2].mostrar();
-        break;
-    case '7':
-        ciudadesGlobal[0].mostrar();
-        break;
-    case '8':
-        ciudadesGlobal.at(-1).mostrar();
-        break;
-    default:
-        break;
-}
+btnBuenosAires.addEventListener('click', () => {
+    ciudadesArgentina[0].mostrar();
+});
+
+btnTierraDelFuego.addEventListener('click', () => {
+    ciudadesArgentina[1].mostrar();
+});
+
+btnSantaCruz.addEventListener('click', () => {
+    ciudadesArgentina[2].mostrar();
+});
+
+btnBrasilia.addEventListener('click', () => {
+    ciudadesBrasil[0].mostrar();
+});
+
+btnSaoPaulo.addEventListener('click', () => {
+    ciudadesBrasil[1].mostrar();
+});
+
+btnFozDoIguacu.addEventListener('click', () => {
+    ciudadesBrasil[2].mostrar();
+});
+
+btnCiudadFria.addEventListener('click', () => {
+    ciudadesGlobal[0].mostrar();
+});
+
+btnCiudadCalida.addEventListener('click', () => {
+    ciudadesGlobal.at(-1).mostrar();
+});
