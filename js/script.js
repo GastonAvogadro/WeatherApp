@@ -1,18 +1,5 @@
 let numeroIngresado = '';
-let listaCiudades = document.getElementById('main__listaCiudades');
 let ciudadSeleccionada = document.createElement('div');
-
-function solicitarCiudad() {
-    numeroIngresado = prompt(`Ingrese el número de la ciudad para conocer el clima actual:
-    1- Buenos Aires
-    2- Tierra del Fuego
-    3- Santa Cruz
-    4- Brasilia
-    5- São Paulo
-    6- Foz do Iguaçu
-    7- (Ciudad más fría)
-    8- (Ciudad más cálida)`);
-}
 
 const tempCalor = () => {
     return Math.round(Math.random() * 20 + 20);
@@ -31,7 +18,7 @@ class Ciudad {
     }
     mostrar() {
         ciudadSeleccionada.innerHTML = `<div class="card" style="width: 25rem">
-        <img src="../img/${this.ciudad}.jpg" class="card-img-top img-fluid">
+        <img src="./img/${this.ciudad}.jpg" class="card-img-top img-fluid">
         <div class="card-body">
           <p class="card-text">${this.ciudad}:</p>
           <p class="card-text">temperatura actual ${this.temperatura}°C</p>
@@ -72,8 +59,6 @@ ciudadesGlobal.sort((a, b) => {
 
 // COMIENZO DEL SIMULADOR
 
-solicitarCiudad();
-
 switch (numeroIngresado) {
     case '1':
         ciudadesArgentina[0].mostrar();
@@ -100,6 +85,5 @@ switch (numeroIngresado) {
         ciudadesGlobal.at(-1).mostrar();
         break;
     default:
-        alert('Ingrese un número correcto por favor');
         break;
 }
