@@ -12,13 +12,33 @@
 
 <body>
     <main class="container" id="main__container">
-        <h1>Aplicación del clima</h1>
+        <h1>Weather App</h1>
 
-        <div class="btn-group me-2" role="group" aria-label="Second group">
-            <button type="button" class="btn btn-secondary" id="btn__ciudadFria">(Ciudad más fría)</button>
-            <button type="button" class="btn btn-secondary" id="btn__ciudadCalida">(Ciudad más cálida)</button>
-        </div>
+        <nav class="navbar navbar-light bg-light container">
+            <div class="d-flex">
+                <input class="form-control me-2" id="input__ciudad" type="search" list="datalistOptions"
+                    placeholder="Ingrese una ciudad" aria-label="Search">
+                <datalist id="datalistOptions">
+                    <option value="Buenos Aires">
+                    <option value="Tierra del Fuego">
+                    <option value="Santa Cruz">
+                    <option value="Brasilia">
+                    <option value="Sao Paulo">
+                    <option value="Foz do Iguacu">
+                </datalist>
+                <button class="btn btn-outline-success" id="btn__buscar">Buscar</button>
+            </div>
 
+            <div id="nav__info"></div>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary" id="btn__recuperarCiudad">Ciudad guardada</button>
+                <button type="button" class="btn btn-secondary" id="btn__guardarCiudad">Guardar ciudad</button>
+                <button type="button" class="btn btn-secondary" id="btn__borrarCiudad">Borrar ciudad</button>
+                <button type="button" class="btn btn-secondary" id="btn__ciudadFria">(Ciudad más fría)</button>
+                <button type="button" class="btn btn-secondary" id="btn__ciudadCalida">(Ciudad más cálida)</button>
+            </div>
+        </nav>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

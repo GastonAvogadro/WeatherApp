@@ -1,14 +1,4 @@
-// VARIABLES
-
-let ciudadSeleccionada = document.createElement('div');
-let btnBuenosAires = document.getElementById('btn__buenosAires');
-let btnTierraDelFuego = document.getElementById('btn__tierraDelFuego');
-let btnSantaCruz = document.getElementById('btn__santaCruz');
-let btnBrasilia = document.getElementById('btn__brasilia');
-let btnSaoPaulo = document.getElementById('btn__saoPaulo');
-let btnFozDoIguacu = document.getElementById('btn__fozDoIguacu');
-let btnCiudadFria = document.getElementById('btn__ciudadFria');
-let btnCiudadCalida = document.getElementById('btn__ciudadCalida');
+// CIUDADES (Database)
 
 const tempCalor = () => {
     return Math.round(Math.random() * 20 + 20);
@@ -17,8 +7,6 @@ const tempCalor = () => {
 const tempFrio = () => {
     return Math.round(Math.random() * 20);
 };
-
-// CIUDADES
 
 class Ciudad {
     constructor(ciudad, pais, temperatura, clima) {
@@ -47,11 +35,11 @@ const ciudadesArgentina = [
 
 const ciudadesBrasil = [
     new Ciudad('Brasilia', 'Brasil', tempCalor(), 'Parcialmente nublado'),
-    new Ciudad('São Paulo', 'Brasil', tempCalor(), 'Nublado'),
+    new Ciudad('Sao Paulo', 'Brasil', tempCalor(), 'Nublado'),
 ];
 
 ciudadesArgentina.push(new Ciudad('Santa Cruz', 'Argentina', tempFrio(), 'Parcialmente nublado'));
-ciudadesBrasil.push(new Ciudad('Foz do Iguaçu', 'Brasil', tempCalor(), 'Soleado'));
+ciudadesBrasil.push(new Ciudad('Foz do Iguacu', 'Brasil', tempCalor(), 'Soleado'));
 
 const ciudadesGlobal = ciudadesArgentina.concat(ciudadesBrasil);
 
@@ -65,36 +53,79 @@ ciudadesGlobal.sort((a, b) => {
     return 0;
 });
 
-// BOTONES
+// BOTONES y DOM
 
-btnBuenosAires.addEventListener('click', () => {
-    ciudadesArgentina[0].mostrar();
-});
+const ciudadSeleccionada = document.createElement('div'),
+    btnCiudadFria = document.getElementById('btn__ciudadFria'),
+    btnCiudadCalida = document.getElementById('btn__ciudadCalida'),
+    btnRecuperarCiudad = document.getElementById('btn__recuperarCiudad'),
+    btnGuardarCiudad = document.getElementById('btn__guardarCiudad'),
+    btnBorrarCiudad = document.getElementById('btn__borrarCiudad'),
+    inputCiudad = document.getElementById('input__ciudad'),
+    btnBuscar = document.getElementById('btn__buscar'),
+    navInfo = document.getElementById('nav__info');
 
-btnTierraDelFuego.addEventListener('click', () => {
-    ciudadesArgentina[1].mostrar();
-});
+let busqueda;
 
-btnSantaCruz.addEventListener('click', () => {
-    ciudadesArgentina[2].mostrar();
-});
+function cambiarInfo(valor) {
+    navInfo.innerHTML = valor;
+}
 
-btnBrasilia.addEventListener('click', () => {
-    ciudadesBrasil[0].mostrar();
-});
-
-btnSaoPaulo.addEventListener('click', () => {
-    ciudadesBrasil[1].mostrar();
-});
-
-btnFozDoIguacu.addEventListener('click', () => {
-    ciudadesBrasil[2].mostrar();
+btnBorrarCiudad.addEventListener('click', () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    cambiarInfo(`Datos eliminados`);
 });
 
 btnCiudadFria.addEventListener('click', () => {
+    cambiarInfo('');
     ciudadesGlobal[0].mostrar();
+    inputCiudad.value = ciudadesGlobal[0].ciudad;
+    busqueda = ciudadesGlobal[0];
 });
 
 btnCiudadCalida.addEventListener('click', () => {
+    cambiarInfo('');
     ciudadesGlobal.at(-1).mostrar();
+    inputCiudad.value = ciudadesGlobal.at(-1).ciudad;
+    busqueda = ciudadesGlobal.at(-1);
+});
+
+btnBuscar.addEventListener('click', () => {
+    cambiarInfo('');
+    busqueda = ciudadesGlobal.find((ciudadBuscada) => ciudadBuscada.ciudad === inputCiudad.value);
+    if (busqueda != undefined) {
+        busqueda.mostrar();
+    } else {
+        inputCiudad.value = '';
+        cambiarInfo(`Ingrese una ciudad correcta`);
+    }
+});
+
+btnGuardarCiudad.addEventListener('click', () => {
+    if (busqueda != undefined) {
+        localStorage.setItem('ciudadGuardada', JSON.stringify(busqueda));
+        cambiarInfo(`Ciudad guardada`);
+    } else {
+        inputCiudad.value = '';
+        cambiarInfo(`No hay una ciudad seleccionada`);
+    }
+});
+
+btnRecuperarCiudad.addEventListener('click', () => {
+    if (localStorage.ciudadGuardada) {
+        cambiarInfo('');
+        busqueda = JSON.parse(localStorage.getItem('ciudadGuardada'));
+        const ciudadRecuperada = new Ciudad(
+            busqueda.ciudad,
+            busqueda.pais,
+            busqueda.temperatura,
+            busqueda.clima
+        );
+        ciudadRecuperada.mostrar();
+        inputCiudad.value = ciudadRecuperada.ciudad;
+    }
+    else{
+        cambiarInfo('No hay una ciudad guardada')
+    }
 });
