@@ -8,6 +8,10 @@ const tempFrio = () => {
     return Math.round(Math.random() * 20);
 };
 
+function cambiarInfo(valor) {
+    navInfo.innerHTML = valor;
+}
+
 class Ciudad {
     constructor(ciudad, pais, temperatura, clima) {
         this.ciudad = ciudad;
@@ -25,6 +29,7 @@ class Ciudad {
         </div>
         </div>`;
         main__container.append(ciudadSeleccionada);
+        cambiarInfo('');
     }
 }
 
@@ -41,7 +46,7 @@ const ciudadesBrasil = [
 ciudadesArgentina.push(new Ciudad('Santa Cruz', 'Argentina', tempFrio(), 'Parcialmente nublado'));
 ciudadesBrasil.push(new Ciudad('Foz do Iguacu', 'Brasil', tempCalor(), 'Soleado'));
 
-const ciudadesGlobal = ciudadesArgentina.concat(ciudadesBrasil);
+const ciudadesGlobal = [...ciudadesArgentina, ...ciudadesBrasil];
 
 ciudadesGlobal.sort((a, b) => {
     if (a.temperatura < b.temperatura) {
@@ -67,49 +72,46 @@ const ciudadSeleccionada = document.createElement('div'),
 
 let busqueda;
 
-function cambiarInfo(valor) {
-    navInfo.innerHTML = valor;
+function guardarDatos() {
+    localStorage.setItem('ciudadGuardada', JSON.stringify(busqueda));
+    cambiarInfo(`Ciudad guardada`);
 }
 
-btnBorrarCiudad.addEventListener('click', () => {
+function borrarDatos() {
     localStorage.clear();
     sessionStorage.clear();
     cambiarInfo(`Datos eliminados`);
+}
+
+btnBorrarCiudad.addEventListener('click', () => {
+    localStorage.ciudadGuardada ? borrarDatos() : cambiarInfo('No hay datos preexistentes');
 });
 
 btnCiudadFria.addEventListener('click', () => {
-    cambiarInfo('');
     ciudadesGlobal[0].mostrar();
     inputCiudad.value = ciudadesGlobal[0].ciudad;
     busqueda = ciudadesGlobal[0];
 });
 
 btnCiudadCalida.addEventListener('click', () => {
-    cambiarInfo('');
     ciudadesGlobal.at(-1).mostrar();
     inputCiudad.value = ciudadesGlobal.at(-1).ciudad;
     busqueda = ciudadesGlobal.at(-1);
 });
 
 btnBuscar.addEventListener('click', () => {
-    cambiarInfo('');
     busqueda = ciudadesGlobal.find((ciudadBuscada) => ciudadBuscada.ciudad === inputCiudad.value);
     if (busqueda != undefined) {
         busqueda.mostrar();
     } else {
         inputCiudad.value = '';
+        ciudadSeleccionada.innerHTML = '';
         cambiarInfo(`Ingrese una ciudad correcta`);
     }
 });
 
 btnGuardarCiudad.addEventListener('click', () => {
-    if (busqueda != undefined) {
-        localStorage.setItem('ciudadGuardada', JSON.stringify(busqueda));
-        cambiarInfo(`Ciudad guardada`);
-    } else {
-        inputCiudad.value = '';
-        cambiarInfo(`No hay una ciudad seleccionada`);
-    }
+    busqueda != undefined ? guardarDatos() : cambiarInfo(`No hay una ciudad seleccionada`);
 });
 
 btnRecuperarCiudad.addEventListener('click', () => {
@@ -124,8 +126,7 @@ btnRecuperarCiudad.addEventListener('click', () => {
         );
         ciudadRecuperada.mostrar();
         inputCiudad.value = ciudadRecuperada.ciudad;
-    }
-    else{
-        cambiarInfo('No hay una ciudad guardada')
+    } else {
+        cambiarInfo('No hay una ciudad guardada');
     }
 });
