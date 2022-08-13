@@ -8,10 +8,6 @@ const tempFrio = () => {
     return Math.round(Math.random() * 20);
 };
 
-function cambiarInfo(valor) {
-    navInfo.innerHTML = valor;
-}
-
 class Ciudad {
     constructor(ciudad, pais, temperatura, clima) {
         this.ciudad = ciudad;
@@ -29,7 +25,6 @@ class Ciudad {
         </div>
         </div>`;
         main__container.append(ciudadSeleccionada);
-        cambiarInfo('');
     }
 }
 
@@ -67,24 +62,37 @@ const ciudadSeleccionada = document.createElement('div'),
     btnGuardarCiudad = document.getElementById('btn__guardarCiudad'),
     btnBorrarCiudad = document.getElementById('btn__borrarCiudad'),
     inputCiudad = document.getElementById('input__ciudad'),
-    btnBuscar = document.getElementById('btn__buscar'),
-    navInfo = document.getElementById('nav__info');
+    btnBuscar = document.getElementById('btn__buscar');
 
 let busqueda;
 
+function alerta(mensaje) {
+    Toastify({
+        text: mensaje,
+        duration: 1900,
+        offset: {
+            x: '52rem',
+            y: '1.25rem',
+        },
+        style: {
+            background: 'linear-gradient(183deg, rgba(117,116,133,1) 0%, rgba(249,233,4,1) 99%)',
+        },
+    }).showToast();
+}
+
 function guardarDatos() {
     localStorage.setItem('ciudadGuardada', JSON.stringify(busqueda));
-    cambiarInfo(`Ciudad guardada`);
+    alerta(`Ciudad guardada`);
 }
 
 function borrarDatos() {
     localStorage.clear();
     sessionStorage.clear();
-    cambiarInfo(`Datos eliminados`);
+    alerta(`Datos eliminados`);
 }
 
 btnBorrarCiudad.addEventListener('click', () => {
-    localStorage.ciudadGuardada ? borrarDatos() : cambiarInfo('No hay datos preexistentes');
+    localStorage.ciudadGuardada ? borrarDatos() : alerta('No hay datos preexistentes');
 });
 
 btnCiudadFria.addEventListener('click', () => {
@@ -106,17 +114,16 @@ btnBuscar.addEventListener('click', () => {
     } else {
         inputCiudad.value = '';
         ciudadSeleccionada.innerHTML = '';
-        cambiarInfo(`Ingrese una ciudad correcta`);
+        alerta(`Ingrese una ciudad correcta`);
     }
 });
 
 btnGuardarCiudad.addEventListener('click', () => {
-    busqueda != undefined ? guardarDatos() : cambiarInfo(`No hay una ciudad seleccionada`);
+    busqueda != undefined ? guardarDatos() : alerta(`No hay una ciudad seleccionada`);
 });
 
 btnRecuperarCiudad.addEventListener('click', () => {
     if (localStorage.ciudadGuardada) {
-        cambiarInfo('');
         busqueda = JSON.parse(localStorage.getItem('ciudadGuardada'));
         const ciudadRecuperada = new Ciudad(
             busqueda.ciudad,
@@ -127,6 +134,6 @@ btnRecuperarCiudad.addEventListener('click', () => {
         ciudadRecuperada.mostrar();
         inputCiudad.value = ciudadRecuperada.ciudad;
     } else {
-        cambiarInfo('No hay una ciudad guardada');
+        alerta('No hay una ciudad guardada');
     }
 });
