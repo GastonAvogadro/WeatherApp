@@ -38,6 +38,9 @@ body {
         width: 6em; }
       body .container .main .temperatura {
         font-size: 6.5em; }
+      body .container .main .tempMin,
+      body .container .main .tempMax {
+        font-size: 2em; }
     body .container .aside {
       width: 40%;
       border-left: 1px solid white;
@@ -69,8 +72,8 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: flex-start; }
-        body .container .aside .historialBusquedas ul li {
+        body .container .aside .historialBusquedas ul .ultimaCiudad {
           margin-top: 1.2rem;
           cursor: pointer; }
-        body .container .aside .historialBusquedas ul li:hover {
+        body .container .aside .historialBusquedas ul .ultimaCiudad:hover {
           text-decoration: underline; }

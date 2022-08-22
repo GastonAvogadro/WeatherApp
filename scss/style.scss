@@ -47,6 +47,10 @@ body {
             .temperatura {
                 font-size: 6.5em;
             }
+            .tempMin,
+            .tempMax {
+                font-size: 2em;
+            }
         }
         .aside {
             width: 40%;
@@ -83,11 +87,11 @@ body {
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
-                li {
+                .ultimaCiudad {
                     margin-top: 1.2rem;
                     cursor: pointer;
                 }
-                li:hover {
+                .ultimaCiudad:hover {
                     text-decoration: underline;
                 }
             }
