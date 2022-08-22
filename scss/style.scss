@@ -1,0 +1,96 @@
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+/* WEATHER APP */
+
+body {
+    height: 100vh;
+    background-image: url('../img/default.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Manrope', sans-serif;
+    color: white;
+    .container {
+        background-color: rgba(0, 0, 0, 0.6);
+        width: 70%;
+        height: 90%;
+        display: flex;
+        border-radius: 1.5rem;
+        .main {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .ciudad {
+                font-size: 1.75em;
+            }
+            .icono {
+                img {
+                    width: 6em;
+                }
+            }
+            .temperatura {
+                font-size: 6.5em;
+            }
+        }
+        .aside {
+            width: 40%;
+            border-left: 1px solid white;
+            padding: 1.5rem;
+            .busqueda {
+                margin-top: 1em;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 2.3em;
+                .inputBusqueda {
+                    max-width: 100%;
+                    font-size: 1.6em;
+                    outline: none;
+                    border: none;
+                    border-radius: 0.5em;
+                    padding: 0.3em 0.6em;
+                    color: white;
+                    background-color: rgba(0, 0, 0, 0.2);
+                }
+                .btnBusqueda {
+                    border-radius: 50%;
+                    border: none;
+                    margin: 0.2em;
+                    .imgBusqueda {
+                        width: 3em;
+                        padding: 0.5em;
+                    }
+                }
+            }
+            .historialBusquedas ul {
+                margin-top: 2rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                li {
+                    margin-top: 1.2rem;
+                    cursor: pointer;
+                }
+                li:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

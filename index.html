@@ -6,49 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
+    <div class="container">
+        <main class="main">
+            <div class="ciudad"></div>
+            <div class="icono"></div>
+            <div class="temperatura"></div>
+        </main>
 
-
-    <div class="ciudad">
-        Ciudad
+        <aside class="aside">
+            <div class="busqueda">
+                <input type="search" class="inputBusqueda" placeholder="Ingrese una ciudad">
+                <button type="submit" class="btnBusqueda"><img src="./img/searchIcon.png" class="imgBusqueda"
+                        alt="search icon"></button>
+            </div>
+            <div class="historialBusquedas">
+                <ul> Última ciudad ingresada
+                    <li class="ultimaCiudad"></li>
+                </ul>
+            </div>
+        </aside>
     </div>
-    <div class="fecha">
-        Fecha de hoy
-    </div>
-    <div class="temperatura">
-        Temperatura
-    </div>
-    <div>
-        <div class="probabilidadLluvia">
-            Probabilidad de lluvia
-        </div>
-        <div class="humedad">
-            Humedad
-        </div>
-    </div>
-    <div class="pronosticoFuturo">
-        <div class="dia1"></div>
-        <div class="dia2"></div>
-        <div class="dia3"></div>
-    </div>
-
-    <div>
-        <div class="busqueda">
-            <input placeholder="Ingrese una ciudad">
-        </div>
-        <div class="ultimasBusquedas">
-            <ul>
-                <li>ciudad1</li>
-                <li>ciudad2</li>
-                <li>ciudad3</li>
-            </ul>
-        </div>
-    </div>
-
-
 
     <script src="./js/script.js"></script>
 </body>
