@@ -67,13 +67,13 @@ body {
           body .container .aside .busqueda .btnBusqueda .imgBusqueda {
             width: 3em;
             padding: 0.5em; }
-      body .container .aside .historialBusquedas ul {
+      body .container .aside .historialCiudades {
         margin-top: 2rem;
         display: flex;
         flex-direction: column;
         justify-content: flex-start; }
-        body .container .aside .historialBusquedas ul .ultimaCiudad {
+        body .container .aside .historialCiudades .ultimaCiudad {
           margin-top: 1.2rem;
           cursor: pointer; }
-        body .container .aside .historialBusquedas ul .ultimaCiudad:hover {
+        body .container .aside .historialCiudades .ultimaCiudad:hover {
           text-decoration: underline; }
