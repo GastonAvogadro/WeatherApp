@@ -1,18 +1,31 @@
 // ELEMENTOS DEL DOM
 
 const ciudad = document.querySelector('.ciudad'),
+    horario = document.querySelector('.horario'),
     icono = document.querySelector('.icono'),
     temperatura = document.querySelector('.temperatura'),
-    btnBusqueda = document.querySelector('.btnBusqueda'),
-    ciudadIngresada = document.querySelector('.inputBusqueda'),
-    ultimaCiudad = document.querySelectorAll('.ultimaCiudad'),
     tempMin = document.querySelector('.tempMin'),
     tempMax = document.querySelector('.tempMax'),
-    historialCiudades = document.querySelector('.historialCiudades');
+    ciudadIngresada = document.querySelector('.inputBusqueda'),
+    btnBusqueda = document.querySelector('.btnBusqueda'),
+    main = document.querySelector('.main'),
+    aside = document.querySelector('.aside'),
+    btnMenu = document.querySelector('.btnMenu'),
+    menuIcon = document.querySelector('.menuIcon'),
+    ultimaCiudad = document.querySelectorAll('.ultimaCiudad'),
+    historialCiudades = document.querySelector('.historialCiudades'),
+    limpiarHistorial = document.querySelector('.limpiarHistorial'),
+    anchoPantalla = window.innerWidth;
+
+// DEFAULT
+
+window.addEventListener('load', () => {
+    ciudad.innerHTML = 'Consulte el clima';
+    icono.innerHTML = `<img src="./img/unknown.png">`;
+    ciudadIngresada.value = '';
+});
 
 // HISTORIAL DE CIUDADES
-
-ciudadIngresada.value = '';
 
 const ciudadesGuardadas = [];
 
@@ -32,17 +45,40 @@ for (const ciudad of ciudadesGuardadas) {
 // CREACION DE CIUDAD
 
 function crearCiudad(data) {
-    ciudad.innerHTML = `${data.name}, ${data.sys.country}`;
-    temperatura.innerHTML = Math.round(data.main.temp) + ' °c';
-    tempMin.innerHTML = `min ${Math.round(data.main.temp_min)} °c`;
-    tempMax.innerHTML = `max ${Math.round(data.main.temp_max)} °c`;
-    icono.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png">`;
-    ultimaCiudad.innerHTML = `${data.name}, ${data.sys.country}`;
+    luxon.Settings.defaultZone = 'utc';
+    let horaCiudad = luxon.DateTime.fromSeconds(luxon.DateTime.now().toUnixInteger() + data.timezone);
+    let horaFormateada = horaCiudad.toFormat(`dd/LL T' hs'`);
 
-    if (data.weather[0].icon.includes('d')) {
+    const nuevaCiudad = {
+        ciudad: data.name,
+        pais: data.sys.country,
+        horario: horaFormateada,
+        tempActual: Math.round(data.main.temp),
+        tempMin: Math.round(data.main.temp_min),
+        tempMax: Math.round(data.main.temp_max),
+        icono: data.weather[0].icon,
+    };
+
+    ciudad.innerHTML = `${nuevaCiudad.ciudad}, ${nuevaCiudad.pais}`;
+    horario.innerHTML = nuevaCiudad.horario;
+    icono.innerHTML = `<img src="./img/${nuevaCiudad.icono}.png">`;
+    temperatura.innerHTML = nuevaCiudad.tempActual + ' °c';
+    tempMin.innerHTML = `min ${nuevaCiudad.tempMin} °c`;
+    tempMax.innerHTML = `max ${nuevaCiudad.tempMax} °c`;
+    ultimaCiudad.innerHTML = `${nuevaCiudad.ciudad}, ${nuevaCiudad.pais}`;
+
+    if (nuevaCiudad.icono.includes('d')) {
         document.body.style.backgroundImage = `url('./img/dia.jpg')`;
     } else {
         document.body.style.backgroundImage = `url('./img/noche.jpg')`;
+    }
+
+    if (anchoPantalla < 576) {
+        menuIcon.classList.toggle('changeIcon');
+        if (aside.classList.contains('hide') || main.classList.contains('hide')) {
+            !aside.classList.contains('hide') && aside.classList.toggle('hide');
+            main.classList.contains('hide') && main.classList.toggle('hide');
+        }
     }
 
     // GUARDADO EN HISTORIAL
@@ -58,7 +94,7 @@ function crearCiudad(data) {
         ciudadesGuardadas.unshift(ciudad.innerHTML);
     }
 
-    historialCiudades.innerHTML = 'Historial de ciudades';
+    historialCiudades.innerHTML = '';
 
     for (const ciudad of ciudadesGuardadas) {
         const li = `<li class="ultimaCiudad">${ciudad}</li>`;
@@ -73,21 +109,33 @@ function crearCiudad(data) {
 
 // CONSULTA A LA API
 
-const buscarCiudad = () => {
+function alerta(mensaje) {
+    Toastify({
+        text: mensaje,
+        duration: 2300,
+        position: 'center',
+        className: 'toastifyClass',
+        style: {
+            background: 'rgb(206, 140, 104)',
+        },
+    }).showToast();
+}
+
+const buscarCiudad = async () => {
+    const apiKey = '5e900ba172cd8945a01eb43f95d8bf7a';
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudadIngresada.value}&appid=${apiKey}&units=metric`;
     if (ciudadIngresada.value != '') {
-        const apiKey = '5e900ba172cd8945a01eb43f95d8bf7a';
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudadIngresada.value}&appid=${apiKey}&units=metric`;
-        fetch(url)
-            .then((response) => response.json())
-            .then((data) => crearCiudad(data))
-            .catch(() => {
-                ciudad.innerHTML = 'Ingrese una ciudad válida';
-                temperatura.innerHTML = '';
-                tempMin.innerHTML = '';
-                tempMax.innerHTML = '';
-                icono.innerHTML = '';
-                document.body.style.backgroundImage = `url('./img/default.jpg')`;
-            });
+        const response = await fetch(url);
+        if (response.status == 401) {
+            alerta('Hubo un problema con el servidor');
+            ciudadIngresada.value = '';
+        } else if (response.status == 404) {
+            alerta('Ingrese una ciudad correcta');
+            ciudadIngresada.value = '';
+        } else {
+            const data = await response.json();
+            crearCiudad(data);
+        }
     }
 };
 
@@ -107,3 +155,18 @@ document.body.addEventListener('click', function (e) {
         buscarCiudad();
     }
 });
+
+limpiarHistorial.addEventListener('click', () => {
+    localStorage.clear();
+    historialCiudades.innerHTML = '';
+    ciudadesGuardadas.length = 0;
+});
+
+if (anchoPantalla < 576) {
+    aside.classList.toggle('hide');
+    btnMenu.addEventListener('click', () => {
+        aside.classList.toggle('hide');
+        main.classList.toggle('hide');
+        menuIcon.classList.toggle('changeIcon');
+    });
+}

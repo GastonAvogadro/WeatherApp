@@ -9,32 +9,43 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <div class="container">
+        <button type="button" class="btnMenu">
+            <img class="menuIcon" alt="menu icon">
+        </button>
         <main class="main">
             <div class="ciudad"></div>
+            <div class="horario"></div>
             <div class="icono"></div>
             <div class="temperatura"></div>
             <div class="tempMin"></div>
             <div class="tempMax"></div>
         </main>
-
         <aside class="aside">
             <div class="busqueda">
                 <input type="search" class="inputBusqueda" placeholder="Ingrese una ciudad">
                 <button type="submit" class="btnBusqueda"><img src="./img/searchIcon.png" class="imgBusqueda"
                         alt="search icon"></button>
             </div>
-            <div class="historialBusquedas">
-                <ul class="historialCiudades"> Historial de ciudades
+            <div class="contenedorHistorial">
+                <div class="limpiarHistorial">
+                    <p>Limpiar historial</p>
+                    <img src="./img/closeIcon.png" width="10px" alt="close icon">
+                </div>
+                <ul class="historialCiudades">
                 </ul>
+
             </div>
         </aside>
     </div>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.0.1/build/global/luxon.min.js"></script>
     <script src="./js/script.js"></script>
 </body>
 
