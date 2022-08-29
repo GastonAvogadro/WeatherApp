@@ -20,8 +20,8 @@ const ciudad = document.querySelector('.ciudad'),
 // DEFAULT
 
 window.addEventListener('load', () => {
-    ciudad.innerHTML = 'Consulte el clima';
-    icono.innerHTML = `<img src="./img/unknown.png">`;
+    ciudad.innerHTML = `Consulte el clima`;
+    temperatura.innerHTML = `<img src="./img/unknown.png" width="150rem">`;
     ciudadIngresada.value = '';
 });
 
@@ -35,11 +35,10 @@ if (datosLocalStorage != null) {
     for (const ciudad of datosLocalStorage) {
         ciudadesGuardadas.push(ciudad);
     }
-}
-
-for (const ciudad of ciudadesGuardadas) {
-    const li = `<li class="ultimaCiudad">${ciudad}</li>`;
-    historialCiudades.innerHTML += li;
+    for (const ciudad of ciudadesGuardadas) {
+        const li = `<li class="ultimaCiudad">${ciudad}</li>`;
+        historialCiudades.innerHTML += li;
+    }
 }
 
 // CREACION DE CIUDAD
@@ -75,13 +74,11 @@ function crearCiudad(data) {
 
     if (anchoPantalla < 576) {
         menuIcon.classList.toggle('changeIcon');
-        if (aside.classList.contains('hide') || main.classList.contains('hide')) {
-            !aside.classList.contains('hide') && aside.classList.toggle('hide');
-            main.classList.contains('hide') && main.classList.toggle('hide');
-        }
+        aside.classList.toggle('hide');
+        main.classList.toggle('hide');
     }
 
-    // GUARDADO EN HISTORIAL
+    // GUARDADO DEL HISTORIAL Y POSICIONAMIENTO
 
     if (ciudadesGuardadas.length < 5 && !ciudadesGuardadas.includes(ciudad.innerHTML)) {
         ciudadesGuardadas.unshift(ciudad.innerHTML);
@@ -101,7 +98,7 @@ function crearCiudad(data) {
         historialCiudades.innerHTML += li;
     }
 
-    // GUARDADO EN STORAGE
+    // GUARDADO EN LOCAL STORAGE
 
     localStorage.clear();
     localStorage.setItem('historialCiudades', JSON.stringify(ciudadesGuardadas));
@@ -112,7 +109,7 @@ function crearCiudad(data) {
 function alerta(mensaje) {
     Toastify({
         text: mensaje,
-        duration: 2300,
+        duration: 3200,
         position: 'center',
         className: 'toastifyClass',
         style: {

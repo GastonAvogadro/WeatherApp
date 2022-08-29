@@ -139,6 +139,12 @@ body {
                     margin: 0.4em;
                 }
             }
+            .limpiarHistorial:hover {
+                color: rgb(184, 183, 183);
+                img {
+                    background-color: rgb(184, 183, 183);
+                }
+            }
             .historialCiudades {
                 height: 12rem;
                 margin-top: 1rem;
@@ -267,6 +273,10 @@ body {
 }
 
 @media (min-width: 1200px) {
+    .toastifyClass {
+        font-size: 1.2em;
+    }
+
     .container {
         width: 70%;
         height: 90%;
@@ -291,6 +301,17 @@ body {
             }
         }
         .aside {
+            .busqueda {
+                margin-top: 1em;
+                .inputBusqueda {
+                    font-size: 1.4em;
+                }
+                .btnBusqueda {
+                    .imgBusqueda {
+                        width: 2.9em;
+                    }
+                }
+            }
             .contenedorHistorial {
                 margin-top: 2rem;
                 .limpiarHistorial {
