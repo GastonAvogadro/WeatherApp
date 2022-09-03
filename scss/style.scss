@@ -114,7 +114,7 @@ body {
                 border-radius: 0.5em;
                 padding: 0.3em 0.6em;
                 color: white;
-                background-color: rgba(0, 0, 0, 0.2);
+                background-color: rgba(0, 0, 0, 0.5);
             }
             .btnBusqueda {
                 border-radius: 50%;
@@ -131,12 +131,12 @@ body {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                font-size: 0.8em;
                 img {
                     width: 1rem;
-                    background-color: white;
                     border-radius: 50%;
-                    padding: 0.18em;
-                    margin: 0.4em;
+                    padding: 0.2em;
+                    margin: 0.1em;
                 }
             }
             .limpiarHistorial:hover {
@@ -155,6 +155,7 @@ body {
                 .ultimaCiudad {
                     margin-top: 1rem;
                     cursor: pointer;
+                    font-size: 1.2em;
                 }
                 .ultimaCiudad:hover {
                     text-decoration: underline;
@@ -167,6 +168,10 @@ body {
 /* MEDIA QUERIES */
 
 @media (min-width: 576px) {
+    .hide {
+        top: 0vh;
+    }
+
     .container {
         width: 90%;
         height: 93%;
@@ -187,11 +192,12 @@ body {
             }
         }
         .aside {
+            top: 0vh;
             position: relative;
             display: block;
             width: 40%;
             height: 100%;
-            border-left: 1px solid white;
+            border-left: 1px solid rgba(255, 255, 255, 0.411);
             padding-top: 1.5rem;
             .busqueda {
                 margin-top: 1em;
@@ -256,7 +262,7 @@ body {
             }
             .contenedorHistorial {
                 .limpiarHistorial {
-                    font-size: 1.2em;
+                    font-size: 0.9em;
                     img {
                         width: 1.2rem;
                     }
@@ -315,7 +321,7 @@ body {
             .contenedorHistorial {
                 margin-top: 2rem;
                 .limpiarHistorial {
-                    font-size: 1.4em;
+                    font-size: 1em;
                     img {
                         width: 1.4rem;
                     }

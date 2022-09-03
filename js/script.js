@@ -159,11 +159,8 @@ limpiarHistorial.addEventListener('click', () => {
     ciudadesGuardadas.length = 0;
 });
 
-if (anchoPantalla < 576) {
+btnMenu.addEventListener('click', () => {
     aside.classList.toggle('hide');
-    btnMenu.addEventListener('click', () => {
-        aside.classList.toggle('hide');
-        main.classList.toggle('hide');
-        menuIcon.classList.toggle('changeIcon');
-    });
-}
+    main.classList.toggle('hide');
+    menuIcon.classList.toggle('changeIcon');
+});

@@ -96,7 +96,7 @@ body {
         border-radius: 0.5em;
         padding: 0.3em 0.6em;
         color: white;
-        background-color: rgba(0, 0, 0, 0.2); }
+        background-color: rgba(0, 0, 0, 0.5); }
       .container .aside .busqueda .btnBusqueda {
         border-radius: 50%;
         margin: 0.2em; }
@@ -107,13 +107,13 @@ body {
       cursor: pointer;
       display: flex;
       justify-content: center;
-      align-items: center; }
+      align-items: center;
+      font-size: 0.8em; }
       .container .aside .contenedorHistorial .limpiarHistorial img {
         width: 1rem;
-        background-color: white;
         border-radius: 50%;
-        padding: 0.18em;
-        margin: 0.4em; }
+        padding: 0.2em;
+        margin: 0.1em; }
     .container .aside .contenedorHistorial .limpiarHistorial:hover {
       color: #b8b7b7; }
       .container .aside .contenedorHistorial .limpiarHistorial:hover img {
@@ -127,12 +127,15 @@ body {
       align-items: center; }
       .container .aside .contenedorHistorial .historialCiudades .ultimaCiudad {
         margin-top: 1rem;
-        cursor: pointer; }
+        cursor: pointer;
+        font-size: 1.2em; }
       .container .aside .contenedorHistorial .historialCiudades .ultimaCiudad:hover {
         text-decoration: underline; }
 
 /* MEDIA QUERIES */
 @media (min-width: 576px) {
+  .hide {
+    top: 0vh; }
   .container {
     width: 90%;
     height: 93%; }
@@ -148,11 +151,12 @@ body {
       .container .main .tempMax {
         font-size: 1.8em; }
     .container .aside {
+      top: 0vh;
       position: relative;
       display: block;
       width: 40%;
       height: 100%;
-      border-left: 1px solid white;
+      border-left: 1px solid rgba(255, 255, 255, 0.411);
       padding-top: 1.5rem; }
       .container .aside .busqueda {
         margin-top: 1em; }
@@ -189,7 +193,7 @@ body {
     .container .aside .busqueda .btnBusqueda .imgBusqueda {
       width: 2.7em; }
   .container .aside .contenedorHistorial .limpiarHistorial {
-    font-size: 1.2em; }
+    font-size: 0.9em; }
     .container .aside .contenedorHistorial .limpiarHistorial img {
       width: 1.2rem; }
   .container .aside .contenedorHistorial .historialCiudades {
@@ -223,7 +227,7 @@ body {
     .container .aside .contenedorHistorial {
       margin-top: 2rem; }
       .container .aside .contenedorHistorial .limpiarHistorial {
-        font-size: 1.4em; }
+        font-size: 1em; }
         .container .aside .contenedorHistorial .limpiarHistorial img {
           width: 1.4rem; }
       .container .aside .contenedorHistorial .historialCiudades {
