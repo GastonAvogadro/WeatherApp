@@ -16,10 +16,18 @@
 
 <body>
     <div class="container">
-        <button type="button" class="btnMenu">
-            <img class="menuIcon" alt="menu icon">
+        <button class="btnMenu" type="submit">
+            <span class="bar1"></span>
+            <span class="bar2"></span>
+            <span class="bar3"></span>
         </button>
+
         <main class="main">
+            <div class="busqueda">
+                <input type="search" class="inputBusqueda" placeholder="Ingrese una ciudad">
+                <button type="submit" class="btnBusqueda"><img src="./img/searchIcon.png" class="imgBusqueda"
+                        alt="search icon"></button>
+            </div>
             <div class="ciudad"></div>
             <div class="horario"></div>
             <div class="icono"></div>
@@ -27,20 +35,15 @@
             <div class="tempMin"></div>
             <div class="tempMax"></div>
         </main>
+
         <aside class="aside hide">
-            <div class="busqueda">
-                <input type="search" class="inputBusqueda" placeholder="Ingrese una ciudad">
-                <button type="submit" class="btnBusqueda"><img src="./img/searchIcon.png" class="imgBusqueda"
-                        alt="search icon"></button>
-            </div>
             <div class="contenedorHistorial">
                 <div class="limpiarHistorial">
-                    <p>Limpiarr historial</p>
+                    <p>Limpiar historial</p>
                     <img src="./img/bin.png" alt="close icon">
                 </div>
                 <ul class="historialCiudades">
                 </ul>
-
             </div>
         </aside>
     </div>

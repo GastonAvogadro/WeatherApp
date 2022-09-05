@@ -11,7 +11,6 @@ const ciudad = document.querySelector('.ciudad'),
     main = document.querySelector('.main'),
     aside = document.querySelector('.aside'),
     btnMenu = document.querySelector('.btnMenu'),
-    menuIcon = document.querySelector('.menuIcon'),
     ultimaCiudad = document.querySelectorAll('.ultimaCiudad'),
     historialCiudades = document.querySelector('.historialCiudades'),
     limpiarHistorial = document.querySelector('.limpiarHistorial'),
@@ -72,17 +71,17 @@ function crearCiudad(data) {
         document.body.style.backgroundImage = `url('./img/noche.jpg')`;
     }
 
-    if (anchoPantalla < 576) {
-        menuIcon.classList.toggle('changeIcon');
+    if(anchoPantalla < 576){
+        btnMenu.classList.toggle('open');
         aside.classList.toggle('hide');
         main.classList.toggle('hide');
     }
 
     // GUARDADO DEL HISTORIAL Y POSICIONAMIENTO
 
-    if (ciudadesGuardadas.length < 5 && !ciudadesGuardadas.includes(ciudad.innerHTML)) {
+    if (ciudadesGuardadas.length < 8 && !ciudadesGuardadas.includes(ciudad.innerHTML)) {
         ciudadesGuardadas.unshift(ciudad.innerHTML);
-    } else if (ciudadesGuardadas.length === 5 && !ciudadesGuardadas.includes(ciudad.innerHTML)) {
+    } else if (ciudadesGuardadas.length === 8 && !ciudadesGuardadas.includes(ciudad.innerHTML)) {
         ciudadesGuardadas.pop();
         ciudadesGuardadas.unshift(ciudad.innerHTML);
     } else {
@@ -160,7 +159,7 @@ limpiarHistorial.addEventListener('click', () => {
 });
 
 btnMenu.addEventListener('click', () => {
+    btnMenu.classList.toggle('open');
     aside.classList.toggle('hide');
     main.classList.toggle('hide');
-    menuIcon.classList.toggle('changeIcon');
 });

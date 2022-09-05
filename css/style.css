@@ -29,10 +29,6 @@ body {
 .hide {
   top: -100vh; }
 
-.changeIcon {
-  content: url("../img/closeIcon.png") !important;
-  padding: 0.8em !important; }
-
 .toastifyClass {
   border-radius: 0.5em;
   padding: 0.5em; }
@@ -44,17 +40,29 @@ body {
   display: flex;
   border-radius: 1.5rem; }
   .container .btnMenu {
+    padding: 10px;
+    border-radius: 50%;
     position: fixed;
     z-index: 10;
     top: 2rem;
     right: 2rem;
-    border-radius: 50%;
-    background-color: white;
     cursor: pointer; }
-    .container .btnMenu .menuIcon {
-      content: url("../img/searchIcon.png");
-      width: 3rem;
-      padding: 0.4em; }
+    .container .btnMenu .bar1,
+    .container .btnMenu .bar2,
+    .container .btnMenu .bar3 {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: black;
+      margin: 5px;
+      transition: all 150ms ease-in-out;
+      border-radius: 2px; }
+  .container .open .bar1 {
+    transform: translate(6px, 3px) rotate(45deg) scale(0.6, 1);
+    margin: 5px; }
+  .container .open .bar3 {
+    transform: translate(6px, -3px) rotate(-45deg) scale(0.61, 1);
+    margin: 5px; }
   .container .main {
     width: 100%;
     position: relative;
@@ -62,6 +70,28 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center; }
+    .container .main .busqueda {
+      max-width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2em; }
+      .container .main .busqueda .inputBusqueda {
+        max-width: 70%;
+        font-size: 1.4em;
+        outline: none;
+        border: none;
+        border-radius: 0.5em;
+        padding: 0.3em 0.6em;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5); }
+      .container .main .busqueda .btnBusqueda {
+        border-radius: 50%;
+        margin: 0.2em;
+        cursor: pointer; }
+        .container .main .busqueda .btnBusqueda .imgBusqueda {
+          width: 3em;
+          padding: 0.5em; }
     .container .main .ciudad {
       font-size: 1.75em; }
     .container .main .horario {
@@ -78,59 +108,41 @@ body {
   .container .aside {
     width: 92%;
     height: 95%;
+    bottom: 1rem;
     position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center; }
-    .container .aside .busqueda {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 2em; }
-      .container .aside .busqueda .inputBusqueda {
-        max-width: 70%;
-        font-size: 1.4em;
-        outline: none;
-        border: none;
-        border-radius: 0.5em;
-        padding: 0.3em 0.6em;
-        color: white;
-        background-color: rgba(0, 0, 0, 0.5); }
-      .container .aside .busqueda .btnBusqueda {
-        border-radius: 50%;
-        margin: 0.2em; }
-        .container .aside .busqueda .btnBusqueda .imgBusqueda {
-          width: 3em;
-          padding: 0.5em; }
-    .container .aside .contenedorHistorial .limpiarHistorial {
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 0.8em; }
-      .container .aside .contenedorHistorial .limpiarHistorial img {
-        width: 1rem;
-        border-radius: 50%;
-        padding: 0.2em;
-        margin: 0.1em; }
-    .container .aside .contenedorHistorial .limpiarHistorial:hover {
-      color: #b8b7b7; }
-      .container .aside .contenedorHistorial .limpiarHistorial:hover img {
-        background-color: #b8b7b7; }
-    .container .aside .contenedorHistorial .historialCiudades {
-      height: 12rem;
-      margin-top: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center; }
-      .container .aside .contenedorHistorial .historialCiudades .ultimaCiudad {
-        margin-top: 1rem;
+    .container .aside .contenedorHistorial {
+      height: 70%; }
+      .container .aside .contenedorHistorial .limpiarHistorial {
         cursor: pointer;
-        font-size: 1.2em; }
-      .container .aside .contenedorHistorial .historialCiudades .ultimaCiudad:hover {
-        text-decoration: underline; }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.9em; }
+        .container .aside .contenedorHistorial .limpiarHistorial img {
+          width: 1.3rem;
+          border-radius: 50%;
+          padding: 0.2em;
+          margin: 0.1em; }
+      .container .aside .contenedorHistorial .limpiarHistorial:hover {
+        color: #b8b7b7; }
+        .container .aside .contenedorHistorial .limpiarHistorial:hover img {
+          background-color: #b8b7b7; }
+      .container .aside .contenedorHistorial .historialCiudades {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center; }
+        .container .aside .contenedorHistorial .historialCiudades .ultimaCiudad {
+          margin: 0.5rem 0;
+          cursor: pointer;
+          font-size: 1.2em; }
+        .container .aside .contenedorHistorial .historialCiudades .ultimaCiudad:hover {
+          text-decoration: underline; }
 
 /* MEDIA QUERIES */
 @media (min-width: 576px) {
@@ -143,6 +155,11 @@ body {
       display: none; }
     .container .main {
       width: 60%; }
+      .container .main .busqueda .inputBusqueda {
+        width: 15rem;
+        font-size: 1em; }
+      .container .main .busqueda .btnBusqueda .imgBusqueda {
+        width: 2.5em; }
       .container .main .ciudad {
         font-size: 1.75em; }
       .container .main .temperatura {
@@ -158,17 +175,12 @@ body {
       height: 100%;
       border-left: 1px solid rgba(255, 255, 255, 0.411);
       padding-top: 1.5rem; }
-      .container .aside .busqueda {
-        margin-top: 1em; }
-        .container .aside .busqueda .inputBusqueda {
-          max-width: 75%;
-          font-size: 1em; }
-        .container .aside .busqueda .btnBusqueda .imgBusqueda {
-          width: 2.5em; }
       .container .aside .contenedorHistorial {
+        margin-top: 2rem;
+        height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center; }
         .container .aside .contenedorHistorial .limpiarHistorial {
           width: fit-content;
@@ -177,6 +189,12 @@ body {
           margin-top: 1.2rem; } }
 
 @media (min-width: 768px) {
+  .container .main .busqueda {
+    width: 20rem; }
+    .container .main .busqueda .inputBusqueda {
+      font-size: 1.2em; }
+    .container .main .busqueda .btnBusqueda .imgBusqueda {
+      width: 2.7em; }
   .container .main .ciudad {
     font-size: 1.9em; }
   .container .main .horario {
@@ -186,20 +204,12 @@ body {
   .container .main .tempMin,
   .container .main .tempMax {
     font-size: 2em; }
-  .container .aside .busqueda {
-    margin-top: 1em; }
-    .container .aside .busqueda .inputBusqueda {
-      font-size: 1.2em; }
-    .container .aside .busqueda .btnBusqueda .imgBusqueda {
-      width: 2.7em; }
   .container .aside .contenedorHistorial .limpiarHistorial {
     font-size: 0.9em; }
     .container .aside .contenedorHistorial .limpiarHistorial img {
       width: 1.2rem; }
-  .container .aside .contenedorHistorial .historialCiudades {
-    height: 100%; }
-    .container .aside .contenedorHistorial .historialCiudades .ultimaCiudad {
-      font-size: 1.2em; } }
+  .container .aside .contenedorHistorial .historialCiudades .ultimaCiudad {
+    font-size: 1.2em; } }
 
 @media (min-width: 1200px) {
   .toastifyClass {
@@ -207,6 +217,13 @@ body {
   .container {
     width: 70%;
     height: 90%; }
+    .container .main .busqueda {
+      width: 22rem;
+      margin-bottom: 1em; }
+      .container .main .busqueda .inputBusqueda {
+        font-size: 1.4em; }
+      .container .main .busqueda .btnBusqueda .imgBusqueda {
+        width: 2.9em; }
     .container .main .ciudad {
       font-size: 2.1em; }
     .container .main .horario {
@@ -218,14 +235,8 @@ body {
     .container .main .tempMin,
     .container .main .tempMax {
       font-size: 2.2em; }
-    .container .aside .busqueda {
-      margin-top: 1em; }
-      .container .aside .busqueda .inputBusqueda {
-        font-size: 1.4em; }
-      .container .aside .busqueda .btnBusqueda .imgBusqueda {
-        width: 2.9em; }
     .container .aside .contenedorHistorial {
-      margin-top: 2rem; }
+      margin-top: 1rem; }
       .container .aside .contenedorHistorial .limpiarHistorial {
         font-size: 1em; }
         .container .aside .contenedorHistorial .limpiarHistorial img {
@@ -233,5 +244,5 @@ body {
       .container .aside .contenedorHistorial .historialCiudades {
         margin-top: 1.2rem; }
         .container .aside .contenedorHistorial .historialCiudades .ultimaCiudad {
-          margin-top: 1.3rem;
+          margin-top: 1.2rem;
           font-size: 1.4em; } }
