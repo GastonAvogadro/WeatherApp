@@ -71,10 +71,12 @@ function crearCiudad(data) {
         document.body.style.backgroundImage = `url('./img/noche.jpg')`;
     }
 
-    if(anchoPantalla < 576){
-        btnMenu.classList.toggle('open');
-        aside.classList.toggle('hide');
-        main.classList.toggle('hide');
+    if (anchoPantalla < 576) {
+        if (btnMenu.classList.contains('open')) {
+            btnMenu.classList.toggle('open');
+            aside.classList.toggle('hide');
+            main.classList.toggle('hide');
+        }
     }
 
     // GUARDADO DEL HISTORIAL Y POSICIONAMIENTO
