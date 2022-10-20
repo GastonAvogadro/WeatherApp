@@ -14,7 +14,8 @@ const ciudad = document.querySelector('.ciudad'),
     ultimaCiudad = document.querySelectorAll('.ultimaCiudad'),
     historialCiudades = document.querySelector('.historialCiudades'),
     limpiarHistorial = document.querySelector('.limpiarHistorial'),
-    anchoPantalla = window.innerWidth;
+    anchoPantalla = window.innerWidth,
+    spinner = document.querySelector('.spinner');
 
 // DEFAULT
 
@@ -120,20 +121,26 @@ function alerta(mensaje) {
 }
 
 const buscarCiudad = async () => {
+    spinner.classList.toggle('hide');
     const apiKey = '5e900ba172cd8945a01eb43f95d8bf7a';
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudadIngresada.value}&appid=${apiKey}&units=metric`;
-    if (ciudadIngresada.value != '') {
-        const response = await fetch(url);
-        if (response.status == 401) {
-            alerta('Hubo un problema con el servidor');
-            ciudadIngresada.value = '';
-        } else if (response.status == 404) {
-            alerta('Ingrese una ciudad correcta');
-            ciudadIngresada.value = '';
-        } else {
-            const data = await response.json();
-            crearCiudad(data);
+    try{
+        if (ciudadIngresada.value != '') {
+            const response = await fetch(url);
+            if (response.status == 401) {
+                alerta('Hubo un problema con el servidor');
+                ciudadIngresada.value = '';
+            } else if (response.status == 404) {
+                alerta('Ingrese una ciudad correcta');
+                ciudadIngresada.value = '';
+            } else {
+                const data = await response.json();
+                crearCiudad(data);
+            }
         }
+    }
+    finally{
+        spinner.classList.toggle('hide')
     }
 };
 
