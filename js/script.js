@@ -14,7 +14,6 @@ const ciudad = document.querySelector('.ciudad'),
     ultimaCiudad = document.querySelectorAll('.ultimaCiudad'),
     historialCiudades = document.querySelector('.historialCiudades'),
     limpiarHistorial = document.querySelector('.limpiarHistorial'),
-    anchoPantalla = window.innerWidth,
     spinner = document.querySelector('.spinner');
 
 // DEFAULT
@@ -44,6 +43,7 @@ if (datosLocalStorage != null) {
 // CREACION DE CIUDAD
 
 function crearCiudad(data) {
+    const anchoPantalla = window.innerWidth;
     luxon.Settings.defaultZone = 'utc';
     let horaCiudad = luxon.DateTime.fromSeconds(luxon.DateTime.now().toUnixInteger() + data.timezone);
     let horaFormateada = horaCiudad.toFormat(`dd/LL T' hs'`);
