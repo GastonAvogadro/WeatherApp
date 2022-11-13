@@ -43,7 +43,7 @@ if (datosLocalStorage != null) {
 // CREACION DE CIUDAD
 
 function crearCiudad(data) {
-    const anchoPantalla = window.innerWidth;
+    let anchoPantalla = window.innerWidth;
     luxon.Settings.defaultZone = 'utc';
     let horaCiudad = luxon.DateTime.fromSeconds(luxon.DateTime.now().toUnixInteger() + data.timezone);
     let horaFormateada = horaCiudad.toFormat(`dd/LL T' hs'`);
