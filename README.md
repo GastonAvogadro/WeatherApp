@@ -1,5 +1,24 @@
-# Weather App - Aplicación de clima
+# Weather App
 
-https://weatherapp-vanillajs.netlify.app/
+Sitio web desarrollado con Javascript puro (Vanilla) para consultar el clima actual en cualquier
+ciudad del mundo conectádonse a una API.
 
-Aplicación creada con Javascript, SASS, CSS, HTML, API (OpenWeather), librerias de Javascript (Luxon y Toastify).
+### Link al sitio
+### https://weatherapp-vanillajs.netlify.app/
+
+### Instalación
+
+```sh
+npm install
+```
+
+### Tech: 
+
+- HTML
+- SASS
+- Javascript
+
+### Librerías y API: 
+- Toastify JS
+- Luxon
+- Open Weather (API)
